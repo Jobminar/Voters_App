@@ -4,6 +4,7 @@ import cors from "cors";
 import dotenv from 'dotenv'
 import router from './routes.js';
 import LoginController from "./Controller/LoginController.js";
+import KaryakarthaLoginController from "./Controller/KaryakarthaLoginController.js"
 const app = express();
 
 // Enable CORS for all routes
@@ -16,6 +17,9 @@ app.use('/',router)
 
 app.post("/signup", LoginController.signup);
 app.post("/login", LoginController.login);
+
+app.post("/karyakarthasignup", KaryakarthaLoginController.ksignup);
+app.post("/karyakarthalogin", KaryakarthaLoginController.klogin);
 
 
 mongoose.connect(process.env.MONGO_URL, {
