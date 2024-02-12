@@ -1,7 +1,7 @@
 import bcrypt from "bcryptjs";
 import Karyakartha from "../Model/KaryakarthaLoginModel.js";
 
-const LoginController = {
+const KaryakarthaController = {
   ksignup: async (req, res) => {
     try {
       const { username, password,phone } = req.body;
@@ -108,26 +108,7 @@ const LoginController = {
       res.status(500).json({ error: 'Internal Server Error' });
     }
   },
-  // deleteUser:async (req, res) => {
-  //   try {
-  //     const { username } = req.params;
-  
-  //     // Find the user by username
-  //     const user = await Karyakartha.findOne({ username });
-  
-  //     if (!user) {
-  //       return res.status(404).json({ error: 'User not found' });
-  //     }
-  
-  //     // Delete the user
-  //     await Karyakartha.deleteOne({ username });
-  
-  //     res.status(200).json({ message: 'User deleted successfully' });
-  //   } catch (error) {
-  //     console.error(error);
-  //     res.status(500).json({ error: 'Internal Server Error' });
-  //   }
-  // }
+ 
 };
 
-export default LoginController;
+export default KaryakarthaController;
