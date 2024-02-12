@@ -21,6 +21,38 @@ const UserController = {
       res.status(500).json({ error: "Internal Server Error" });
     }
   },
+  // getVoterById: async (req, res) => {
+  //   try {
+  //     const EPIC_NO = req.params.id;
+  //     const voter = await Voters.findOne({ EPIC_NO });
+  
+  //     if (!voter) {
+  //       return res.status(404).json({ error: "Voter not found" });
+  //     }
+  
+  //     res.status(200).json(voter);
+  //   } catch (error) {
+  //     console.error(error);
+  //     res.status(500).json({ error: "Internal Server Error" });
+  //   }
+  // },
+  getVoterById: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const voter = await Voters.findOne({
+        $or: [{ EPIC_NO: id }, { H_NO: id }, { PART_NO: id }]
+      });
+  
+      if (!voter) {
+        return res.status(404).json({ error: "Voter not found" });
+      }
+  
+      res.status(200).json(voter);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  },
 
   deleteVoter: async (req, res) => {
     try {

@@ -8,8 +8,9 @@ const router=express.Router()
 router.post("/postvoters",UserController.createUser)
 router.get("/getvoters",UserController.getAllUsers)
 router.delete("/deletevoter/:id",UserController.deleteVoter)
+router.get("/getvoter/:id", UserController.getVoterById);
 
 
-router.get("/api/search",SearchController.searchBy)
+router.get("/api/search",SearchController.searchByHouse)
 
 export default router

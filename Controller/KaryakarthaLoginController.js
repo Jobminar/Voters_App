@@ -17,7 +17,8 @@ const LoginController = {
       const newUser = new Karyakartha({
         username,
         password: hashedPassword,
-        phone
+        phone,
+        verified:false
       });
 
       await newUser.save();
@@ -39,6 +40,10 @@ const LoginController = {
         return res.status(401).json({ error: 'Invalid username or password' });
       }
 
+      if (!user.verified) {
+        return res.status(401).json({ error: 'Your are not verified please contact admin.' });
+      }
+
       const isPasswordValid = await bcrypt.compare(password, user.password);
 
       if (!isPasswordValid) {
@@ -50,7 +55,79 @@ const LoginController = {
       console.error(error);
       res.status(500).json({ error: 'Internal Server Error' });
     }
-  }
+  },
+  getAll:async (req, res) => {
+    try {
+      const allKaryakartas = await Karyakartha.find();
+      res.status(200).json(allKaryakartas);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  },
+  deleteUser:async (req, res) => {
+    try {
+      const { username } = req.params;
+  
+      // Find the user by username
+      const user = await Karyakartha.findOne({ username });
+  
+      if (!user) {
+        return res.status(404).json({ error: 'User not found' });
+      }
+  
+      // Delete the user
+      await Karyakartha.deleteOne({ username });
+  
+      res.status(200).json({ message: 'User deleted successfully' });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  },
+  update:async (req, res) => {
+    try {
+      const { username } = req.params;
+  
+      // Find the user by username
+      const user = await Karyakartha.findOne({ username });
+  
+      if (!user) {
+        return res.status(404).json({ error: 'User not found' });
+      }
+  
+      // Update the verified field to true
+      user.verified = true;
+  
+      // Save the updated user
+      await user.save();
+  
+      res.status(200).json({ message: 'User information updated successfully' });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  },
+  // deleteUser:async (req, res) => {
+  //   try {
+  //     const { username } = req.params;
+  
+  //     // Find the user by username
+  //     const user = await Karyakartha.findOne({ username });
+  
+  //     if (!user) {
+  //       return res.status(404).json({ error: 'User not found' });
+  //     }
+  
+  //     // Delete the user
+  //     await Karyakartha.deleteOne({ username });
+  
+  //     res.status(200).json({ message: 'User deleted successfully' });
+  //   } catch (error) {
+  //     console.error(error);
+  //     res.status(500).json({ error: 'Internal Server Error' });
+  //   }
+  // }
 };
 
 export default LoginController;

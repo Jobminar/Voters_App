@@ -20,6 +20,9 @@ app.post("/login", LoginController.login);
 
 app.post("/karyakarthasignup", KaryakarthaLoginController.ksignup);
 app.post("/karyakarthalogin", KaryakarthaLoginController.klogin);
+app.get("/getallkaryakarta",KaryakarthaLoginController.getAll)
+app.put("/updatekaryakarta/:username",KaryakarthaLoginController.update)
+app.delete("/deletekaryakarta/:username",KaryakarthaLoginController.deleteUser)
 
 
 mongoose.connect(process.env.MONGO_URL, {
