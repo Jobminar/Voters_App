@@ -2,8 +2,8 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from 'dotenv'
-import router from './routes.js';
-import LoginController from "./Controller/LoginController.js";
+import router from '../routes.js';
+import LoginController from "../Controller/LoginController.js";
 
 
 const app = express();
