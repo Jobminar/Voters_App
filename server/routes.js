@@ -1,22 +1,23 @@
 import express from 'express'
-
-import UserController from './Controller/LoginController.js'
 import SearchController from './Controller/Search/Search.js'
 import ReportIncidentController from './Controller/ReportVoterController.js'
 import ReportvoterController from './Controller/ReportVoterController.js'
 import KaryakarthaLoginController from './Controller/KaryakarthaLoginController.js'
+import VoterDetailsController from './Controller/VotersDetailsController.js'
+
+
 
 const router=express.Router()
 
-router.post("/postvoters",UserController.createUser)
-router.get("/getvoters",UserController.getAllUsers)
-router.delete("/deletevoter/:id",UserController.deleteVoter)
-router.get("/getvoter/:id", UserController.getVoterById);
+router.post("/postvoters",VoterDetailsController.createUser)
+router.get("/getvoters",VoterDetailsController.getAllUsers)
+router.delete("/deletevoter/:id",VoterDetailsController.deleteVoter)
+router.get("/getvoter/:id", VoterDetailsController.getVoterById);
 
 
 router.get("/api/search",SearchController.searchByHouse)
-router.post('/postreporticident',ReportIncidentController.createReportIncident)
-router.get("/getreportincident",ReportIncidentController.getReportIncident)
+router.post('/postreporticident',ReportIncidentController.createReportVoter)
+router.get("/getreportincident",ReportIncidentController.getReportController)
 
 router.post("/postreportvoter",ReportvoterController.createReportVoter)
 router.get("/getreportvoter",ReportvoterController.getReportController)
