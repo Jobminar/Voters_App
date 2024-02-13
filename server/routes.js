@@ -16,7 +16,8 @@ router.get("/getvoter/:id", VoterDetailsController.getVoterById);
 
 
 router.get("/api/search",SearchController.searchByHouse)
-router.get("/api/search",SearchController.searchByHouse)
+
+
 
 router.post('/postreportincident',ReportIncidentController.createReportIncident)
 router.get("/getreportincident",ReportIncidentController.getReportIncident)
@@ -33,3 +34,4 @@ router.put("/updatekaryakarta/:username",KaryakarthaLoginController.update)
 router.delete("/deletekaryakarta/:username",KaryakarthaLoginController.deleteUser)
 
 export default router
+

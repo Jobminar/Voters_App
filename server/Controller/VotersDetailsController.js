@@ -27,7 +27,7 @@ const VoterDetailsController = {
     try {
       const { id } = req.params;
       const voter = await Voters.findOne({
-        $or: [{ EPIC_NO: id }, { H_NO: id }, { PART_NO: id }]
+        $or: [{ EPIC_NO: id }, { H_NO: id }, {  MOBILE_NO: id }]
       });
   
       if (!voter) {
