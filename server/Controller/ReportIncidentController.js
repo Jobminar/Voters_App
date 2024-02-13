@@ -1,12 +1,11 @@
 import multer from "multer";
-import ReportIncident from "../.vscode/server/Model/ReportIncidentModel.js";
+import ReportIncident from '../Model/ReportIncidentModel.js'
 
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
 const ReportIncidentController = {
 
-  
   createReportIncident: [
     upload.single('image'),
     async (req, res) => {
