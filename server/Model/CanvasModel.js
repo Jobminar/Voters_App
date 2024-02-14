@@ -14,7 +14,7 @@ const canvasSchema=new Schema({
     category:{type:String,required:true},
     religion:{type:String,required:true},
     comments:{type:String,required:true},
-    image:{type:String,required:true}
+    image:{type:String,required:true}
 })
 const Canvas=model("Canvas",canvasSchema)
 export default Canvas

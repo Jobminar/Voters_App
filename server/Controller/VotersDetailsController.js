@@ -43,7 +43,7 @@ const VoterDetailsController = {
 
   deleteVoter: async (req, res) => {
     try {
-      const { id } = req.params; // Use destructuring for better readability
+      const { id } = req.params; 
       const deletedVoter = await Voters.findByIdAndDelete(id);
 
       if (!deletedVoter) {
