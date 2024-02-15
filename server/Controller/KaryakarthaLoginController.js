@@ -33,12 +33,12 @@ const KaryakarthaController = {
 
   klogin: async (req, res) => {
     try {
-      const { username, password } = req.body;
+      const { phone, password } = req.body;
 
-      const user = await Karyakartha.findOne({ username });
+      const user = await Karyakartha.findOne({ phone });
 
       if (!user) {
-        return res.status(401).json({ error: 'Invalid username or password' });
+        return res.status(401).json({ error: 'Invalid phone or password' });
       }
 
       if (!user.verified) {
@@ -48,7 +48,7 @@ const KaryakarthaController = {
       const isPasswordValid = await bcrypt.compare(password, user.password);
 
       if (!isPasswordValid) {
-        return res.status(401).json({ error: 'Invalid username or password' });
+        return res.status(401).json({ error: 'Invalid phone or password' });
       }
 
       // Send user details in the response

@@ -26,9 +26,7 @@ router.get("/getconvas",CanvasController.getCanvas)
 router.post("/karyakarthasignup", KaryakarthaLoginController.ksignup);
 router.post("/karyakarthalogin", KaryakarthaLoginController.klogin);
 router.get("/getallkaryakarta",KaryakarthaLoginController.getAll)
-// router.patch("/updatekaryakarta/:id",KaryakarthaLoginController.update)
 router.put('/verify/:_id', KaryakarthaLoginController.verifyKaryakartha);
-
 router.delete("/deletekaryakarta/:username",KaryakarthaLoginController.deleteUser)
 
 export default router
