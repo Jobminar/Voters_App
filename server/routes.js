@@ -19,7 +19,7 @@ router.get("/getincidentreport/:id", ReportIncidentController.getReportsIncident
 
 router.post("/postreportvoter",ReportvoterController.createReportVoter)
 router.get("/getreportvoter",ReportvoterController.getReportController)
-router.get("/getKaryakarthaId/:id", ReportvoterController.getReportsByKaryakarthaId);
+router.get("/getReportKaryakartha/:id", ReportvoterController.getReportsByKaryakarthaId);
 router.delete("/deletereportkaryakartha/:id",ReportvoterController.deleteReportById)
 
 

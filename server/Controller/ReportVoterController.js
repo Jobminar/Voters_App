@@ -46,7 +46,7 @@ const ReportvoterController = {
   getReportsByKaryakarthaId: async (req, res) => {
     try {
       const { karyakartha_Id } = req.params;
-  
+      
       const reports = await Reportvoters.find({ karyakartha_Id });
   
       if (!reports || reports.length === 0) {
