@@ -30,6 +30,7 @@ const KaryakarthaController = {
     }
   },
 
+
   klogin: async (req, res) => {
     try {
       const { username, password } = req.body;
@@ -50,12 +51,22 @@ const KaryakarthaController = {
         return res.status(401).json({ error: 'Invalid username or password' });
       }
 
-      res.status(200).json({ message: 'Login successful' });
+      // Send user details in the response
+      res.status(200).json({
+        message: 'Login successful',
+        user: {
+          _id: user._id,
+          username: user.username,
+          phone: user.phone,
+          // Add any other user details you want to include in the response
+        },
+      });
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: 'Internal Server Error' });
     }
   },
+
   getAll:async (req, res) => {
     try {
       const allKaryakartas = await Karyakartha.find();
@@ -87,10 +98,10 @@ const KaryakarthaController = {
   },
   update:async (req, res) => {
     try {
-      const { username } = req.params;
+      const { _id } = req.params;
   
       // Find the user by username
-      const user = await Karyakartha.findOne({ username });
+      const user = await Karyakartha.findOne({ _id });
   
       if (!user) {
         return res.status(404).json({ error: 'User not found' });
