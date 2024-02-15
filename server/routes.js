@@ -5,17 +5,12 @@ import VoterDetailsController from './Controller/VotersDetailsController.js'
 import ReportIncidentController from './Controller/ReportIncidentController.js'
 import CanvasController from './Controller/canvasController.js'
 
-//
-
 const router=express.Router()
 
 router.post("/postvoters",VoterDetailsController.createUser)
 router.get("/getvoters",VoterDetailsController.getAllUsers)
 router.delete("/deletevoter/:id",VoterDetailsController.deleteVoter)
 router.get("/getvoter/:id", VoterDetailsController.getVoterById);
-
-
-
 
 
 router.post('/postreportincident',ReportIncidentController.createReportIncident)
