@@ -42,7 +42,24 @@ const ReportIncidentController = {
       console.error(error);
       res.status(500).json({ error: 'Internal Server Error' });
     }
-  }
+  },
+
+  getReportsByKaryakarthaId: async (req, res) => {
+    try {
+      const { karyakartha_Id } = req.params;
+
+      const reports = await Reportvoters.find({ karyakartha_Id });
+
+      if (!reports || reports.length === 0) {
+        return res.status(404).json({ error: 'No reports found for the given karyakartha_Id' });
+      }
+
+      res.status(200).json(reports);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  },
 };
 
 export default ReportIncidentController;

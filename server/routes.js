@@ -15,10 +15,10 @@ router.get("/getvoter/:id", VoterDetailsController.getVoterById);
 
 router.post('/postreportincident',ReportIncidentController.createReportIncident)
 router.get("/getreportincident",ReportIncidentController.getReportIncident)
-
+router.get("/getincidentreport/:id", ReportvoterController.getReportsByKaryakarthaId);
 router.post("/postreportvoter",ReportvoterController.createReportVoter)
+
 router.get("/getreportvoter",ReportvoterController.getReportController)
-// Add this in your routes or wherever you define your API routes
 router.get("/getKaryakarthaId/:id", ReportvoterController.getReportsByKaryakarthaId);
 
 
