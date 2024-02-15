@@ -96,29 +96,32 @@ const KaryakarthaController = {
       res.status(500).json({ error: 'Internal Server Error' });
     }
   },
-  update:async (req, res) => {
+ 
+
+  verifyKaryakartha: async (req, res) => {
     try {
       const { _id } = req.params;
-  
-      // Find the user by username
-      const user = await Karyakartha.findOne({ _id });
-  
-      if (!user) {
-        return res.status(404).json({ error: 'User not found' });
+
+      // Find the Karyakartha by _id
+      const karyakartha = await Karyakartha.findById(_id);
+
+      if (!karyakartha) {
+        return res.status(404).json({ error: 'Karyakartha not found' });
       }
-  
+
       // Update the verified field to true
-      user.verified = true;
-  
-      // Save the updated user
-      await user.save();
-  
-      res.status(200).json({ message: 'User information updated successfully' });
+      karyakartha.verified = true;
+
+      // Save the updated Karyakartha
+      await karyakartha.save();
+
+      res.status(200).json({ message: 'Karyakartha verified successfully' });
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: 'Internal Server Error' });
     }
   },
+  
  
 };
 
