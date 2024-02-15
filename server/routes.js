@@ -18,6 +18,9 @@ router.get("/getreportincident",ReportIncidentController.getReportIncident)
 
 router.post("/postreportvoter",ReportvoterController.createReportVoter)
 router.get("/getreportvoter",ReportvoterController.getReportController)
+// Add this in your routes or wherever you define your API routes
+router.get("/getKaryakarthaId/:id", ReportvoterController.getReportsByKaryakarthaId);
+
 
 
 router.post("/postcanvas",CanvasController.createCanvas)

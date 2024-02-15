@@ -1,6 +1,7 @@
 import { Schema ,model} from "mongoose"
 
 const reportVoters=new Schema({
+    karyakartha_Id:{type:String,required:true},
     houseNumber:{type:String,required:true},
     pointOfContact:{type:Number,required:true},
     numberOfVoters:{type:Number,required:true},
