@@ -15,16 +15,18 @@ router.get("/getvoter/:id", VoterDetailsController.getVoterById);
 
 router.post('/postreportincident',ReportIncidentController.createReportIncident)
 router.get("/getreportincident",ReportIncidentController.getReportIncident)
-router.get("/getincidentreport/:id", ReportvoterController.getReportsByKaryakarthaId);
-router.post("/postreportvoter",ReportvoterController.createReportVoter)
+router.get("/getincidentreport/:id", ReportIncidentController.getReportsIncidentByKaryakarthaId);
 
+router.post("/postreportvoter",ReportvoterController.createReportVoter)
 router.get("/getreportvoter",ReportvoterController.getReportController)
 router.get("/getKaryakarthaId/:id", ReportvoterController.getReportsByKaryakarthaId);
+router.delete("/deletereportkaryakartha/:id",ReportvoterController.deleteReportById)
 
 
 
 router.post("/postcanvas",CanvasController.createCanvas)
 router.get("/getconvas",CanvasController.getCanvas)
+router.delete("/deletecanvas/:id",CanvasController.deleteCanvasById)
 
 router.post("/karyakarthasignup", KaryakarthaLoginController.ksignup);
 router.post("/karyakarthalogin", KaryakarthaLoginController.klogin);

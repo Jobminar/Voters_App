@@ -65,6 +65,22 @@ const CanvasController = {
       res.status(500).json({ error: 'Internal Server Error' });
     }
   },
+  deleteCanvasById: async (req, res) => {
+    try {
+      const { id } = req.params;
+
+      const deletedCanvas = await Canvas.findByIdAndDelete(id);
+
+      if (!deletedCanvas) {
+        return res.status(404).json({ error: 'Canvas not found' });
+      }
+
+      res.status(200).json({ message: 'Canvas deleted successfully', deletedCanvas });
+    } catch (error) {
+      console.error('Error deleting Canvas:', error);
+      res.status(500).json({ error: 'Failed to delete Canvas', details: error.message });
+    }
+  },
 };
 
 export default CanvasController;
