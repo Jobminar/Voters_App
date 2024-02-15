@@ -3,7 +3,7 @@ import ReportvoterController from './Controller/ReportVoterController.js'
 import KaryakarthaLoginController from './Controller/KaryakarthaLoginController.js'
 import VoterDetailsController from './Controller/VotersDetailsController.js'
 import ReportIncidentController from './Controller/ReportIncidentController.js'
-import CanvasController from './Controller/canvasController.js'
+import CanvasController from './Controller/CanvasController.js'
 
 const router=express.Router()
 
