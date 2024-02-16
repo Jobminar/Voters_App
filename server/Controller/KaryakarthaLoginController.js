@@ -65,7 +65,7 @@ const KaryakarthaController = {
         user: {
           _id: user._id,
           username: user.username,
-          phone: user.phone,
+          phone: user.phoneNo,
           // Add any other user details you want to include in the response
         },
       });
