@@ -43,24 +43,33 @@ const ReportvoterController = {
     }
   },
 
+
+
   getReportsByKaryakarthaId: async (req, res) => {
     try {
-      const { karyakartha_Id } = req.params;
-      
-      const reports = await Reportvoters.find({ karyakartha_Id });
+      const { karyakartha_Id } = req.body;
   
-      if (!reports || reports.length === 0) {
-        return res.status(404).json({ message: 'No reports found for the given karyakartha_Id', reports: [] });
+      if (!karyakartha_Id) {
+        return res.status(400).json({ error: 'karyakartha_Id is required in the request body' });
       }
   
-      res.status(200).json({ message: 'Reports retrieved successfully', reports });
+      const report = await Reportvoters.find({ karyakartha_Id });  
+      
+  
+      if (!report) {
+        return res.status(404).json({ message: 'No report found for the given karyakartha_Id' });
+      }
+  
+      res.status(200).json({ message: 'Report retrieved successfully', report });
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: 'Internal Server Error' });
     }
   },
   
-
+ 
+  
+  
   deleteReportById: async (req, res) => {
     try {
       const { id } = req.params;
@@ -77,6 +86,11 @@ const ReportvoterController = {
       res.status(500).json({ error: 'Failed to delete Report', details: error.message });
     }
   },
+
+
+ 
 };
 
 export default ReportvoterController;
+
+
