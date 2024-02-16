@@ -4,7 +4,8 @@ import Karyakartha from "../Model/KaryakarthaLoginModel.js";
 const KaryakarthaController = {
   ksignup: async (req, res) => {
     try {
-      const { username, password, phone, area, assembly, parlament } = req.body;
+      const { username, password, phoneNo, area, assembly, parlament } =
+        req.body;
 
       const existingUser = await Karyakartha.findOne({ username });
 
@@ -19,7 +20,7 @@ const KaryakarthaController = {
       const newUser = new Karyakartha({
         username,
         password: hashedPassword,
-        phone,
+        phoneNo,
         area,
         lead,
         assembly,
@@ -38,9 +39,9 @@ const KaryakarthaController = {
 
   klogin: async (req, res) => {
     try {
-      const { phone, password } = req.body;
+      const { phoneNo, password } = req.body;
 
-      const user = await Karyakartha.findOne({ phone });
+      const user = await Karyakartha.findOne({ phoneNo });
 
       if (!user) {
         return res.status(401).json({ error: "Invalid phone or password" });
@@ -129,7 +130,7 @@ const KaryakarthaController = {
   },
   kSignupVerified: async (req, res) => {
     try {
-      const { username, password, phone, area, assembly, parlament, lead } =
+      const { username, password, phoneNo, area, assembly, parlament, lead } =
         req.body;
 
       const existingUser = await Karyakartha.findOne({ username });
@@ -145,7 +146,7 @@ const KaryakarthaController = {
       const newUser = new Karyakartha({
         username,
         password: hashedPassword,
-        phone,
+        phoneNo,
         area,
         lead,
         assembly,
