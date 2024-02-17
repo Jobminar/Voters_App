@@ -12,13 +12,12 @@ router.get("/getvoters",VoterDetailsController.getAllUsers)
 router.delete("/deletevoter/:id",VoterDetailsController.deleteVoter)
 router.get("/getvoter/:id", VoterDetailsController.getVoterById);
 
-
 router.post('/postreportincident',ReportIncidentController.createReportIncident)
 router.get("/getreportincident",ReportIncidentController.getReportIncident)
 router.post("/getincidentreport", ReportIncidentController.getReportsIncidentByKaryakarthaId);
 
 router.post("/postreportvoter",ReportvoterController.createReportVoter)
-router.get("/getreportvoter",ReportvoterController.getReportController)
+router.get("/getreportvoter",ReportvoterController.getReportController)    
 router.post("/getReportsByKaryakarthaId", ReportvoterController.getReportsByKaryakarthaId);
 router.delete("/deletereportkaryakartha/:id",ReportvoterController.deleteReportById)
 

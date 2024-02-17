@@ -4,12 +4,32 @@ import cors from "cors";
 import dotenv from 'dotenv'
 import router from "./routes.js";
 
+import http from 'http';
+import { Server } from 'socket.io';
+import userController from './Controller/UserController.js'
+import adminController from './Controller/AdminController.js'
+
 const app = express();
 
 app.use(cors());
 dotenv.config();
-app.use(express.json({limit:"20mb"}));
+app.use(express.json({limit:"30mb"}));
 
+const server = http.createServer(app);
+
+
+const io = new Server(server);
+
+
+userController.io = io;
+adminController.io = io;
+
+
+app.post('/usermsg', (req, res) => userController.sendMessageToAdmin(req, res, io));
+app.get('/receiveUserMsg', userController.receiveMessageFromUser);
+
+app.post('/adminmsg', adminController.sendMessageToUser);
+app.get('/receiveAdminMsg', adminController.receiveMessageFromAdmin);
 
 
 app.use('/',router);
