@@ -2,10 +2,10 @@ import bcrypt from "bcryptjs";
 import Karyakartha from "../Model/KaryakarthaLoginModel.js";
 
 const KaryakarthaController = {
+
   ksignup: async (req, res) => {
     try {
-      const { username, password, phoneNo, area, assembly, parlament } =
-        req.body;
+      const { username, password, phoneNo, area, assembly, parlament, lead } = req.body;
 
       const existingUser = await Karyakartha.findOne({ username });
 
@@ -25,15 +25,15 @@ const KaryakarthaController = {
         lead,
         assembly,
         parlament,
-        verified: false,
+        verified: false, // Set the verified field to false during signup
       });
 
       await newUser.save();
 
       res.status(201).json({ message: "Karyakartha registered successfully" });
     } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: "Internal Server Error" });
+      console.error('Error:', error);
+      res.status(500).json({ error: 'Internal Server Error', details: error.message });
     }
   },
 

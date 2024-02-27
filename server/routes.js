@@ -4,16 +4,14 @@ import KaryakarthaLoginController from "./Controller/KaryakarthaLoginController.
 import VoterDetailsController from "./Controller/VotersDetailsController.js";
 import ReportIncidentController from "./Controller/ReportIncidentController.js";
 import CanvasController from "./Controller/CanvasController.js";
-
 const router = express.Router();
 
 router.post("/postvoters", VoterDetailsController.createUser);
 router.get("/getvoters", VoterDetailsController.getAllUsers);
 router.delete("/deletevoter/:id", VoterDetailsController.deleteVoter);
 router.get("/getvoter/:id", VoterDetailsController.getVoterById);
-
-
 router.post("/postreportvoter",ReportvoterController.createReportVoter)
+
 router.get("/getreportvoter",ReportvoterController.getReportController)    
 router.post("/getReportsByKaryakarthaId", ReportvoterController.getReportsByKaryakarthaId);
 router.delete("/deletereportkaryakartha/:id",ReportvoterController.deleteReportById)
@@ -25,12 +23,17 @@ router.post("/getincidentreport",ReportIncidentController.getReportsIncidentByKa
 
 router.post("/postreportvoter", ReportvoterController.createReportVoter);
 router.get("/getreportvoter", ReportvoterController.getReportController);
+
 router.post("/getReportsByKaryakarthaId",ReportvoterController.getReportsByKaryakarthaId);
 router.delete("/deletereportkaryakartha/:id", ReportvoterController.deleteReportById);
 
 router.post("/postcanvas", CanvasController.createCanvas);
 router.get("/getconvas", CanvasController.getCanvas);
 router.delete("/deletecanvas/:id", CanvasController.deleteCanvasById);
+
+
+
+  // Route to post a notification (user)
 
 
 

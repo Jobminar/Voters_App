@@ -1,10 +1,10 @@
-
-import { Schema, model } from "mongoose";
+import { Schema, model } from 'mongoose';
 
 const userSchema = new Schema({
-    message: { type: String, required: true, trim: true, maxlength: 255 }, // Example: Added trim and maxlength
+  notifications: { type: [String], required: true, default: [] },
+  userId: { type: String, required: true },
 });
 
-const User = model("User", userSchema);
+const User = model('User', userSchema);
 
 export default User;
