@@ -30,7 +30,7 @@ const KaryakarthaController = {
 
       await newUser.save();
 
-      res.status(201).json({ message: "Karyakartha registered successfully" });
+      res.status(201).json({ message: "Karyakartha registered successfully",newUser });
     } catch (error) {
       console.error('Error:', error);
       res.status(500).json({ error: 'Internal Server Error', details: error.message });
