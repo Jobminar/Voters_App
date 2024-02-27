@@ -7,11 +7,11 @@ const KaryakarthaController = {
     try {
       const { username, password, phoneNo, area, assembly, parlament, lead } = req.body;
 
-      const existingUser = await Karyakartha.findOne({ username });
+      const existingUser = await Karyakartha.findOne({ phoneNo });
 
       if (existingUser) {
         return res.status(400).json({
-          error: "Karyakartha with this Karyakartha name already exists",
+          error: "Karyakartha with this Karyakartha phone already exists",
         });
       }
 
