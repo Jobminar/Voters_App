@@ -4,6 +4,7 @@ import KaryakarthaLoginController from "./Controller/KaryakarthaLoginController.
 import VoterDetailsController from "./Controller/VotersDetailsController.js";
 import ReportIncidentController from "./Controller/ReportIncidentController.js";
 import CanvasController from "./Controller/CanvasController.js";
+import locationController from "./Controller/locatonController.js";
 const router = express.Router();
 
 router.post("/postvoters", VoterDetailsController.createUser);
@@ -31,8 +32,8 @@ router.post("/postcanvas", CanvasController.createCanvas);
 router.get("/getconvas", CanvasController.getCanvas);
 router.delete("/deletecanvas/:id", CanvasController.deleteCanvasById);
 
-
-
+router.post("/postlocation",locationController.createLocation)
+router.get("/getlocation",locationController.getAllLocations)
   // Route to post a notification (user)
 
 
