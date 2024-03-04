@@ -5,6 +5,8 @@ import VoterDetailsController from "./Controller/VotersDetailsController.js";
 import ReportIncidentController from "./Controller/ReportIncidentController.js";
 import CanvasController from "./Controller/CanvasController.js";
 import locationController from "./Controller/locatonController.js";
+import notificationController from "./Controller/notificationController.js";
+import otpController from "./Controller/otpController.js";
 const router = express.Router();
 
 router.post("/postvoters", VoterDetailsController.createUser);
@@ -34,7 +36,11 @@ router.delete("/deletecanvas/:id", CanvasController.deleteCanvasById);
 
 router.post("/postlocation",locationController.createLocation)
 router.get("/getlocation",locationController.getAllLocations)
-  // Route to post a notification (user)
+
+router.post("/postnotification",notificationController.postNotification)
+
+router.post('/saveotp', otpController.saveOTP);
+router.get('/getotp/:phoneNo', otpController.getOTPByPhoneNo);
 
 
 
