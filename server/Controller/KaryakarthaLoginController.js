@@ -162,6 +162,40 @@ const KaryakarthaController = {
       res.status(500).json({ error: "Internal Server Error" });
     }
   },
+  updateKaryakartha: async (req, res) => {
+    try {
+      const { _id } = req.params;
+      const updateData = req.body;
+  
+      // Find the Karyakartha by _id
+      const karyakartha = await Karyakartha.findById(_id);
+  
+      if (!karyakartha) {
+        return res.status(404).json({ error: "Karyakartha not found with the given ID" });
+      }
+  
+      // Validate updateData fields if needed
+  
+      // Update the Karyakartha's information
+      Object.assign(karyakartha, updateData);
+  
+      // Save the updated Karyakartha
+      await karyakartha.save();
+  
+      res.status(200).json({
+        success: true,
+        message: "Karyakartha updated successfully",
+        updatedKaryakartha: karyakartha,
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({
+        success: false,
+        error: "Internal Server Error",
+        details: error.message,
+      });
+    }
+  }
 };
 
 export default KaryakarthaController;

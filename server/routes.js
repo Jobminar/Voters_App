@@ -7,6 +7,7 @@ import CanvasController from "./Controller/CanvasController.js";
 import locationController from "./Controller/locatonController.js";
 import notificationController from "./Controller/notificationController.js";
 import otpController from "./Controller/otpController.js";
+import messageController from "./Controller/messageController.js";
 const router = express.Router();
 
 router.post("/postvoters", VoterDetailsController.createUser);
@@ -50,5 +51,10 @@ router.get("/getallkaryakarta", KaryakarthaLoginController.getAll);
 router.put("/verify/:_id", KaryakarthaLoginController.verifyKaryakartha);
 router.post("/createkaryakartha", KaryakarthaLoginController.kSignupVerified);
 router.delete("/deletekaryakarta/:username", KaryakarthaLoginController.deleteUser);
+router.patch('/karyakartha/update/:_id', KaryakarthaLoginController.updateKaryakartha);
+
+router.post('/postmessage',messageController.createMessage)
+router.get('/getAllMessage',messageController.getAllMessages)
+router.get('/getUsername/:username',messageController.getUserNameMessage)
 
 export default router;

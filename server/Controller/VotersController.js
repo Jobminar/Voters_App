@@ -39,9 +39,7 @@ const UserController = {
   getVoterById: async (req, res) => {
     try {
       const { id } = req.params;
-      const voter = await Voters.findOne({
-        $or: [{ EPIC_NO: id }, { H_NO: id }, { PART_NO: id }]
-      });
+      const voter = await Voters.findOne({$or: [{ EPIC_NO: id }, { H_NO: id }, { PART_NO: id }]});
   
       if (!voter) {
         return res.status(404).json({ error: "Voter not found" });
