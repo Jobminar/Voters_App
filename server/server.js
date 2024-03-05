@@ -5,7 +5,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import http from 'http';
 import router from './routes.js';
-import setupSocket from './Controller/socketController.js';
+import setupSocket from './Controller/socketController.js'
 
 dotenv.config();
 

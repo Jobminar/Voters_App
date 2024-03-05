@@ -20,16 +20,6 @@ const setupSocket = (server) => {
         username: data.username,
         message: data.message,
       });
-
-      // Simulate a reply from the admin after a short delay (e.g., 1 second)
-      setTimeout(() => {
-        const adminReply = `This is a reply from Admin to ${data.username}!`;
-        // Emit the admin's reply to the specific user who sent the message
-        io.emit('chat message', {
-          username: 'Admin',
-          message: adminReply,
-        });
-      }, 1000);
     });
 
     socket.on('disconnect', () => {
