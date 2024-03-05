@@ -15,11 +15,11 @@ const setupSocket = (server) => {
     socket.on('chat message', (data) => {
       console.log(`Message from ${data.username}: ${data.message}:${data.phoneNo}`);
 
-      // Broadcast the user's message to all connected clients, including the admin
+      // Broadcast the user's message to all connected clients, including the sender
       io.emit('chat message', {
         username: data.username,
         message: data.message,
-        phoneNo:data.phoneNo
+        phoneNo: data.phoneNo,
       });
     });
 
