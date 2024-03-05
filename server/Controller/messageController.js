@@ -4,12 +4,12 @@ const messageController={
 
     createMessage:async(req,res)=>{
         try{
-        const {username,message}=req.body
+        const {username,message,phoneNo}=req.body
 
-        if(!username || !message){
-            return res.status(400).json({message:"Required fields username message"})
+        if(!username || !message || !phoneNo){
+            return res.status(400).json({message:"Required fields username message phoneNo"})
         }
-        const newMessage=await Message({username,message})
+        const newMessage=await Message({username,message,phoneNo})
         const savedMessage=await newMessage.save()
         res.status(200).json({message:"Creating message successfull",savedMessage})
     }
