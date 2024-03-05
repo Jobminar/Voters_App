@@ -45,6 +45,20 @@ const messageController={
           console.error(error);
           res.status(500).json({ error: 'Internal server failed to getUsername message' });
         }
-      }
+      },
+      deleteAllMessages: async (req, res) => {
+        try {
+          // Use deleteMany to delete all messages
+          const deleteAll = await Message.deleteMany();
+    
+          res.status(200).json({
+            message: 'All messages deleted successfully',
+            deletedCount: deleteAll.deletedCount,
+          });
+        } catch (error) {
+          console.error(error);
+          res.status(500).json({ error: 'Internal server failed to delete messages' });
+        }
+      },
 }
 export default messageController

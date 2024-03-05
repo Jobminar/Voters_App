@@ -56,5 +56,5 @@ router.patch('/karyakartha/update/:_id', KaryakarthaLoginController.updateKaryak
 router.post('/postmessage',messageController.createMessage)
 router.get('/getAllMessage',messageController.getAllMessages)
 router.get('/getUsername/:username',messageController.getUserNameMessage)
-
+router.delete('/deleteAllMessages',messageController.deleteAllMessages)
 export default router;

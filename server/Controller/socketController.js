@@ -13,12 +13,13 @@ const setupSocket = (server) => {
     console.log('A user connected');
 
     socket.on('chat message', (data) => {
-      console.log(`Message from ${data.username}: ${data.message}`);
+      console.log(`Message from ${data.username}: ${data.message}:${data.phoneNo}`);
 
       // Broadcast the user's message to all connected clients, including the admin
       io.emit('chat message', {
         username: data.username,
         message: data.message,
+        phoneNo:data.phoneNo
       });
     });
 
