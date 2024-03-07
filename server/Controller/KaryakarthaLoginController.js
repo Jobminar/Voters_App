@@ -174,7 +174,7 @@ const KaryakarthaController = {
         return res.status(404).json({ error: "Karyakartha not found with the given ID" });
       }
   
-      // Validate updateData fields if needed
+      // Validate updateData fields if need
   
       // Update the Karyakartha's information
       Object.assign(karyakartha, updateData);
