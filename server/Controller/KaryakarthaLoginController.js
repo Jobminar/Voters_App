@@ -1,4 +1,4 @@
-import bcrypt from "bcryptjs";
+
 import Karyakartha from "../Model/KaryakarthaLoginModel.js";
 
 const KaryakarthaController = {
@@ -14,12 +14,10 @@ const KaryakarthaController = {
           error: "Karyakartha with this Karyakartha phone already exists",
         });
       }
-
-      const hashedPassword = await bcrypt.hash(password, 10);
-
+     
       const newUser = new Karyakartha({
         username,
-        password: hashedPassword,
+        password,
         phoneNo,
         area,
         lead,
@@ -27,7 +25,7 @@ const KaryakarthaController = {
         parlament,
         verified: false, // Set the verified field to false during signup
       });
-
+      
       await newUser.save();
 
       res.status(201).json({ message: "Karyakartha registered successfully",newUser });
@@ -75,28 +73,17 @@ const KaryakarthaController = {
     }
   },
 
-  // getAll: async (req, res) => {
-  //   try {
-  //     const allKaryakartas = await Karyakartha.find();
-  //     res.status(200).json(allKaryakartas);
-  //   } catch (error) {
-  //     console.error(error);
-  //     res.status(500).json({ error: "Internal Server Error" });
-  //   }
-  // },
 
   getAll: async (req, res) => {
     try {
-      // Fetch all Karyakartas including the plain-text password
-      const allKaryakartas = await Karyakartha.find().select('+plainTextPassword');
+      const allKaryakartas = await Karyakartha.find();
       res.status(200).json(allKaryakartas);
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: "Internal Server Error" });
     }
   },
-
-
+  
   deleteUser: async (req, res) => {
     try {
       const { username } = req.params;
