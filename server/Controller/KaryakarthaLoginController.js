@@ -75,15 +75,28 @@ const KaryakarthaController = {
     }
   },
 
+  // getAll: async (req, res) => {
+  //   try {
+  //     const allKaryakartas = await Karyakartha.find();
+  //     res.status(200).json(allKaryakartas);
+  //   } catch (error) {
+  //     console.error(error);
+  //     res.status(500).json({ error: "Internal Server Error" });
+  //   }
+  // },
+
   getAll: async (req, res) => {
     try {
-      const allKaryakartas = await Karyakartha.find();
+      // Fetch all Karyakartas including the plain-text password
+      const allKaryakartas = await Karyakartha.find().select('+plainTextPassword');
       res.status(200).json(allKaryakartas);
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: "Internal Server Error" });
     }
   },
+
+
   deleteUser: async (req, res) => {
     try {
       const { username } = req.params;
