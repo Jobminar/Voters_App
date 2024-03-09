@@ -1,11 +1,10 @@
-
 import Karyakartha from "../Model/KaryakarthaLoginModel.js";
 
 const KaryakarthaController = {
-
   ksignup: async (req, res) => {
     try {
-      const { username, password, phoneNo, area, assembly, parlament, lead } = req.body;
+      const { username, password, phoneNo, area, assembly, parlament, lead } =
+        req.body;
 
       const existingUser = await Karyakartha.findOne({ phoneNo });
 
@@ -14,7 +13,7 @@ const KaryakarthaController = {
           error: "Karyakartha with this Karyakartha phone already exists",
         });
       }
-     
+
       const newUser = new Karyakartha({
         username,
         password,
@@ -25,13 +24,17 @@ const KaryakarthaController = {
         parlament,
         verified: false, // Set the verified field to false during signup
       });
-      
+
       await newUser.save();
 
-      res.status(201).json({ message: "Karyakartha registered successfully",newUser });
+      res
+        .status(201)
+        .json({ message: "Karyakartha registered successfully", newUser });
     } catch (error) {
-      console.error('Error:', error);
-      res.status(500).json({ error: 'Internal Server Error', details: error.message });
+      console.error("Error:", error);
+      res
+        .status(500)
+        .json({ error: "Internal Server Error", details: error.message });
     }
   },
 
@@ -51,7 +54,7 @@ const KaryakarthaController = {
           .json({ error: "Your are not verified please contact admin." });
       }
 
-      const isPasswordValid = await bcrypt.compare(password, user.password);
+      const isPasswordValid = await compare(password, user.password);
 
       if (!isPasswordValid) {
         return res.status(401).json({ error: "Invalid phone or password" });
@@ -73,7 +76,6 @@ const KaryakarthaController = {
     }
   },
 
-
   getAll: async (req, res) => {
     try {
       const allKaryakartas = await Karyakartha.find();
@@ -83,7 +85,7 @@ const KaryakarthaController = {
       res.status(500).json({ error: "Internal Server Error" });
     }
   },
-  
+
   deleteUser: async (req, res) => {
     try {
       const { username } = req.params;
@@ -141,11 +143,9 @@ const KaryakarthaController = {
         });
       }
 
-      const hashedPassword = await bcrypt.hash(password, 10);
-
       const newUser = new Karyakartha({
         username,
-        password: hashedPassword,
+        password,
         phoneNo,
         area,
         lead,
@@ -166,22 +166,24 @@ const KaryakarthaController = {
     try {
       const { _id } = req.params;
       const updateData = req.body;
-  
+
       // Find the Karyakartha by _id
       const karyakartha = await Karyakartha.findById(_id);
-  
+
       if (!karyakartha) {
-        return res.status(404).json({ error: "Karyakartha not found with the given ID" });
+        return res
+          .status(404)
+          .json({ error: "Karyakartha not found with the given ID" });
       }
-  
+
       // Validate updateData fields if need
-  
+
       // Update the Karyakartha's information
       Object.assign(karyakartha, updateData);
-  
+
       // Save the updated Karyakartha
       await karyakartha.save();
-  
+
       res.status(200).json({
         success: true,
         message: "Karyakartha updated successfully",
@@ -195,7 +197,7 @@ const KaryakarthaController = {
         details: error.message,
       });
     }
-  }
+  },
 };
 
 export default KaryakarthaController;
