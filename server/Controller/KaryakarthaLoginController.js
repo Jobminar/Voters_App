@@ -1,4 +1,3 @@
-import bcryptjs from "bcryptjs";
 import Karyakartha from "../Model/KaryakarthaLoginModel.js";
 
 const KaryakarthaController = {
@@ -55,9 +54,7 @@ const KaryakarthaController = {
           .json({ error: "You are not verified, please contact admin." });
       }
 
-      const isPasswordValid = await bcryptjs.compare(password, user.password);
-
-      if (!isPasswordValid) {
+      if (password !== user.password) {
         return res.status(401).json({ error: "Invalid phone or password" });
       }
 
@@ -179,9 +176,9 @@ const KaryakarthaController = {
           .json({ error: "Karyakartha not found with the given ID" });
       }
 
-      //we can validate updateData fields if needed
+      // Validate updateData fields if needed
 
-      //we can update the Karyakartha's information
+      // Update the Karyakartha's information
       Object.assign(karyakartha, updateData);
 
       // Save the updated Karyakartha

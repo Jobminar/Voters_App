@@ -1,4 +1,3 @@
-import bcryptjs from "bcryptjs";
 import Login from "../Model/LoginModel.js";
 
 const LoginController = {
@@ -14,11 +13,9 @@ const LoginController = {
           .json({ error: "User with this username already exists" });
       }
 
-      const hashedPassword = await bcryptjs.hash(password, 10);
-
       const newUser = new Login({
         username,
-        password: hashedPassword,
+        password, // Storing the plain text password
         phone,
       });
 
@@ -41,9 +38,8 @@ const LoginController = {
         return res.status(401).json({ error: "Invalid username or password" });
       }
 
-      const isPasswordValid = await bcryptjs.compare(password, user.password);
-
-      if (!isPasswordValid) {
+      // Compare the plain text passwords
+      if (password !== user.password) {
         return res.status(401).json({ error: "Invalid username or password" });
       }
 
