@@ -1,3 +1,4 @@
+import bcryptjs from "bcryptjs";
 import Karyakartha from "../Model/KaryakarthaLoginModel.js";
 
 const KaryakarthaController = {
@@ -51,10 +52,10 @@ const KaryakarthaController = {
       if (!user.verified) {
         return res
           .status(401)
-          .json({ error: "Your are not verified please contact admin." });
+          .json({ error: "You are not verified, please contact admin." });
       }
 
-      const isPasswordValid = await compare(password, user.password);
+      const isPasswordValid = await bcryptjs.compare(password, user.password);
 
       if (!isPasswordValid) {
         return res.status(401).json({ error: "Invalid phone or password" });
@@ -130,6 +131,7 @@ const KaryakarthaController = {
       res.status(500).json({ error: "Internal Server Error" });
     }
   },
+
   kSignupVerified: async (req, res) => {
     try {
       const { username, password, phoneNo, area, assembly, parlament, lead } =
@@ -162,6 +164,7 @@ const KaryakarthaController = {
       res.status(500).json({ error: "Internal Server Error" });
     }
   },
+
   updateKaryakartha: async (req, res) => {
     try {
       const { _id } = req.params;
@@ -176,9 +179,9 @@ const KaryakarthaController = {
           .json({ error: "Karyakartha not found with the given ID" });
       }
 
-      // Validate updateData fields if need
+      //we can validate updateData fields if needed
 
-      // Update the Karyakartha's information
+      //we can update the Karyakartha's information
       Object.assign(karyakartha, updateData);
 
       // Save the updated Karyakartha
