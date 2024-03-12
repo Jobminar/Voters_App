@@ -17,7 +17,6 @@ const setupSocket = (server) => {
 
       // Broadcast the user's message to all connected clients, including the sender
       io.emit('chat message', {
-        username: data.phoneNo,
         message: data.message,
         phoneNo: data.phoneNo,
       });
