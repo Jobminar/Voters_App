@@ -86,25 +86,21 @@ const KaryakarthaController = {
   
   deleteUser: async (req, res) => {
     try {
-      const { username } = req.params;
-
-      // Find the user by username
-      const user = await Karyakartha.findOne({ username });
-
+      const { id } = req.params;
+  
+      
+      const user = await Karyakartha.findByIdAndDelete(id);
+  
       if (!user) {
         return res.status(404).json({ error: "User not found" });
       }
-
-      // Delete the user
-      await Karyakartha.deleteOne({ username });
-
       res.status(200).json({ message: "User deleted successfully" });
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: "Internal Server Error" });
     }
   },
-
+  
   verifyKaryakartha: async (req, res) => {
     try {
       const { _id } = req.params;

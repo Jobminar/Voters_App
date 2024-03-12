@@ -50,7 +50,7 @@ router.post("/karyakarthalogin", KaryakarthaLoginController.klogin);
 router.get("/getallkaryakarta", KaryakarthaLoginController.getAll);
 router.put("/verify/:_id", KaryakarthaLoginController.verifyKaryakartha);
 router.post("/createkaryakartha", KaryakarthaLoginController.kSignupVerified);
-router.delete("/deletekaryakarta/:username", KaryakarthaLoginController.deleteUser);
+router.delete("/deletekaryakarta/:id", KaryakarthaLoginController.deleteUser);
 router.patch('/karyakartha/update/:_id', KaryakarthaLoginController.updateKaryakartha);
 
 router.post('/postmessage',messageController.createMessage)
