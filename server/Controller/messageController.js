@@ -4,12 +4,12 @@ const messageController={
 
     createMessage:async(req,res)=>{
         try{
-        const {username,message,phoneNo}=req.body
+        const {message,phoneNo}=req.body
 
-        if(!username || !message || !phoneNo){
-            return res.status(400).json({message:"Required fields username message phoneNo"})
+        if(!message || !phoneNo){
+            return res.status(400).json({message:"Required fields  message phoneNo"})
         }
-        const newMessage=await Message({username,message,phoneNo})
+        const newMessage=await Message({message,phoneNo})
         const savedMessage=await newMessage.save()
         res.status(200).json({message:"Creating message successfull",savedMessage})
     }
@@ -32,12 +32,12 @@ const messageController={
   
     getUserNameMessage: async (req, res) => {
         try {
-          const { username } = req.params;
+          const { phoneNo } = req.params;
     
-          const getUser = await Message.find({ username });
+          const getUser = await Message.find({ phoneNo });
     
           if (!getUser || getUser.length === 0) {
-            return res.status(404).json({ message: "Username not found" });
+            return res.status(404).json({ message: "phoneNo not found" });
           }
     
           res.status(200).json(getUser);
