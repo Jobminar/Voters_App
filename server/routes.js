@@ -44,12 +44,10 @@ router.delete("/deletecanvas/:id", CanvasController.deleteCanvasById);
 router.post("/postlocation",locationController.createLocation)
 router.get("/getlocation",locationController.getAllLocations)
 router.delete("/deleteAllLocation",locationController.deleteAllLocation)
-
-router.get('/locations/:userId', locationController.getAllLocationsForUser);
+router.get("/getlocation/:userId",locationController.getByUserID)
 
 
 router.post("/postnotification",notificationController.postNotification)
-
 router.post('/saveotp', otpController.saveOTP);
 router.get('/getotp/:phoneNo', otpController.getOTPByPhoneNo);
 

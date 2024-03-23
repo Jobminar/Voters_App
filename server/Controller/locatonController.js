@@ -37,7 +37,7 @@ const locationController = {
       res.status(500).json({ error: "Failed to delete all locations" });
     }
   },
-  getAllLocationsForUser: async (req, res) => {
+  getByUserID: async (req, res) => {
     try {
       const { userId } = req.params; // Assuming userId is provided in the URL params
       if (!userId) {
