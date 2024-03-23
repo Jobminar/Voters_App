@@ -8,7 +8,13 @@ import locationController from "./Controller/locatonController.js";
 import notificationController from "./Controller/notificationController.js";
 import otpController from "./Controller/otpController.js";
 import messageController from "./Controller/messageController.js";
+import peopleController from "./Controller/peopleController.js";
+
 const router = express.Router();
+
+router.post("/postpeople",peopleController.createPeople)
+router.get("/getpeople",peopleController.getAllPeople)
+router.get("/get/:id",peopleController.getPeopleById)
 
 router.post("/postvoters", VoterDetailsController.createUser);
 router.get("/getvoters", VoterDetailsController.getAllUsers);
@@ -37,6 +43,10 @@ router.delete("/deletecanvas/:id", CanvasController.deleteCanvasById);
 
 router.post("/postlocation",locationController.createLocation)
 router.get("/getlocation",locationController.getAllLocations)
+router.delete("/deleteAllLocation",locationController.deleteAllLocation)
+
+router.get('/locations/:userId', locationController.getAllLocationsForUser);
+
 
 router.post("/postnotification",notificationController.postNotification)
 
@@ -57,4 +67,5 @@ router.post('/postmessage',messageController.createMessage)
 router.get('/getAllMessage',messageController.getAllMessages)
 router.get('/getUsername/:username',messageController.getUserNameMessage)
 router.delete('/deleteAllMessages',messageController.deleteAllMessages)
+
 export default router;

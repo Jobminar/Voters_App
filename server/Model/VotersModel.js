@@ -27,3 +27,6 @@ const userSchema=new Schema({
 })
 const Voters=model("Voters",userSchema)
 export default Voters
+
+
+
